@@ -1,0 +1,136 @@
+LIVE #017 - Navigation Component: A MELHOR FORMA de criar fluxos para o seu app
+
+O que é o Navigation Component?
+
+É um conjunto de bibliotecas, ferramentas e guias para navigação in-app.
+
+O componente centraliza toda a informação de navegação do seu aplicativo em um 
+NAVIGATION GRAPH, provendo um framework robusto para implementação de tudo, desde 
+um simples click de botão, até padrões complexos de navegação na IU 
+(Interface de Usuário).
+
+O componente de navegação consiste de três partes principais, descritas abaixo:
+
+	NAVIGATION GRAPH (Gráfico de navegação): é um recurso XML que contém todas as 
+	informações relacionadas à navegação em um local centralizado. 
+	Isso inclui todas as áreas de conteúdo individual no aplicativo, chamadas destinos,
+	e todos os caminhos que podem ser percorridos pelo usuário no aplicativo.
+
+	NavHost: é um contêiner vazio que mostra destinos do gráfico de navegação. 
+	O componente de navegação contém uma implementação NavHostpadrão, 
+	NavHostFragment, que mostra os destinos do fragmento.
+
+	NavController: é um objeto que gerencia a navegação do aplicativo em um NavHost. 
+	O NavController organiza a troca do conteúdo de destino no NavHost conforme os 
+	usuários se movem pelo aplicativo.
+
+Grandes benefícios de utilizar o Navigation Component:
+
+	 - Processamento de transações do fragmento.
+
+	 - Processamento correto de ações Para cima e Voltar por padrão.
+
+	 - Fornecimento de recursos padronizados para animações e transições.
+
+	 - Implementação e processamento de links diretos.
+
+	 - Inclusão de padrões da IU de navegação, como as gavetas de navegação e a 
+	 navegação inferior, com o mínimo de trabalho adicional.
+
+	 - Safe Args: é um plug-in do Gradle que oferece type-safety ao navegar e 
+	 passar dados entre destinos.
+
+	 - Compatibilidade com ViewModel: é possível definir escopo a um ViewModel 
+	 para um gráfico de navegação e compartilhar dados relacionados à IU entre os 
+	 destinos do gráfico.
+
+Campo de batalha:
+
+	1 - Adicionar dependências... de uma maneira diferente.
+
+	2 - Criar 2 fragments que farão parte do nosso fluxo de telas.
+
+		- Criando o primeiro fragment da forma "tradicional"
+
+			 - Adicionando o Fragmento ao NavGraph
+
+			 	- Atenção: O já conhecido "bug" do PREVIEW UNAVAILABLE.
+
+			 Se você não viu a aula de fragments, é ESSENCIAL que você veja para 
+			 entender melhor sobre os Fragments. Acompanhe essa daqui e depois vá 
+			 para a aula no link: https://youtu.be/hr2fhWskrFU
+
+		- Criando o segundo fragment através da interface de visualização do 
+		 Nav Graph.
+
+	3 - Criar layout para identificar os fragments de forma mais clara.
+
+	4 - Destino inicial: Indicado no gráfico pelo ícone da "casinha" ao 
+	lado do Fragment.
+
+		Por padrão, será o primeiro fragment adicionado ao Nav Graph. 
+		Mas você pode alterar isso facilmente.
+
+	5 - Conectando um fragment ao outro no Navigation Graph.
+
+	6 - Adicionando o NavHost a sua Activity e executando a nossa aplicação pela 
+	primeira vez.
+
+	7 - Conhecendo a estrutura básica do NavGraph em XML.
+
+		A idéia original da Google é que você não mexa muito no NavGraph direto 
+		pelo XML, e sim pela interface gráfica. 
+
+		Na prática, a gente acaba mexendo mais do que gostaria.
+
+	8 - Chamando as ações de navegação de dentro dos nossos fragments.
+
+	9 - Animações de Transição entre fragments no Navigation Component
+
+10 - O que é o Safe Args?
+
+	- Safe Args é um plugin gradle que gera objetos simples para navegação tipada 
+	 (type-safe) e acesso a argumentos entre componentes do seu fluxo de navegação.
+
+	 O Safe Args é FORTEMENTE recomendado para passagem de dados entre esses 
+	 componentes pela segurançã de tipo que ele traz, além da facilidade e 
+	 padronização.
+
+11 - Adicionando as dependências do Safe Args no seu projeto do Android Studio.
+
+	No build.gradle a nível de PROJETO:
+
+	classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+
+	No build.gradle, a nível de APLICAÇÃO:
+
+	id 'androidx.navigation.safeargs.kotlin'	
+
+	Essas dependências são para módulos em Kotlin, se você estiver usando Java, 
+	consulte as docs oficiais:
+
+	-> https://developer.android.com/jetpack/androidx/releases/navigation
+
+
+11 - Passando dados entre o primeiro e o segundo fragment utilizando o Safe Args.
+
+	- Adicione os argumentos desejados usando a interface gráfica do NavGraph no 
+	Android Studio.
+
+	- Os argumentos são declarados no fragment de DESTINO, não no de origem.
+
+	Atenção: Defina o TIPO do argumento de forma consciente, pois essa é a 
+	grande vantagem do Safe Args.
+
+	- Substituindo o id da action pelo action do Safe Args, agora com os 
+	argumentos.
+
+	Atenção: Se você não atribuir um valor padrão, a passagem desse argumento 
+	será sempre obrigatróia ao criar o action do Safe Args.
+
+12 - Recebendo os dados do primeiro fragment, no segundo, utilizando o Safe Args.
+
+13 - Passando e recebendo OBJETOS usando o Safe Args
+
+	Se você viu a LIVE #016, é muito parecido com a abordagem que aplicamos passando os 
+	objetos entre fragments diretamente!
